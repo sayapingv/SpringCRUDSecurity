@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Edit</title>
+</head>
+<body>
+<div><a href="#" th:href="@{/logout}"> Logout </a></div>
+<form action="#"
+      th:action="@{/admin/save}"
+      th:object="${user}"
+      method="post">
+    <table>
+        <thead>
+        <tr>
+            <th> Name</th>
+            <th> Last Name</th>
+            <th> Email</th>
+            <th> Password</th>
+            <th> Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+    <tr>
+        <div>
+            <td>
+                <input hidden name="idEdit" th:value="${user.getId()}"/>
+            </td>
+            <td>
+                <input name="firstNameEdit" th:value="${user.getFirstName()}"/>
+            </td>
+            <td>
+                <input name="lastNameEdit" th:value="${user.getLastName()}"/>
+            </td>
+            <td>
+                <input name="emailEdit" th:value="${user.getEmail()}"/>
+            </td>
+            <td>
+                <input name="passwordEdit" th:value="${user.getPassword()}"/>
+            </td>
+            <td>
+                <input th:name="|user.roles|" th:value="${user.getRoles().toString()}"/>
+            </td>
+        </div>
+    </tr>
+    </tbody>
+    </table>
+    <span>
+        <input type="submit" th:value="Save">
+        <input type="reset" th:value="Reset"/>
+    </span>
+</form>
+</body>
+</html>

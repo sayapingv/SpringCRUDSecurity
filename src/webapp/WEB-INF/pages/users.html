@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div><a href="#" th:href="@{/logout}"> Logout </a></div>
+<table>
+    <thead>
+    <tr>
+        <th> Name</th>
+        <th> LastName</th>
+        <th> Email</th>
+        <th> Roles</th>
+        <th> Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${users.isEmpty()}">
+        <td colspan="2"> No users</td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td><span th:text="${user.getFirstName()}"> Name </span></td>
+        <td><span th:text="${user.getLastName()}"> LastName </span></td>
+        <td><span th:text="${user.getEmail()}"> Email </span></td>
+        <td><span th:text="${user.getRoles().toString()}"> Roles </span></td>
+        <td><a href="#" th:href="@{/admin/edit(id=${user.getId()})}"> Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div><a href="#" th:href="@{/admin/create}"> Add User </a></div>
+<!--<div><a href="#" th:href="@{/admin/edit}" th:classappend="${users.isEmpty()} ? 'disabled' : ''"> Edit-->
+<!--    Users </a></div>-->
+
+</body>
+</html>
